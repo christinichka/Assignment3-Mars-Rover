@@ -17,17 +17,18 @@ class Rover {
     for (let i = 0; i < (message.commands).length; i++) {
       if (message.commands[i].commandType === 'MOVE') {
         
-        if (this.mode === 'NORMAL') { 
-        this.position = message.commands[i].value;
-        response.results.push({completed: 'true'});
-        
-        } else if(this.mode === 'LOW_POWER') {
+        if (this.mode === 'LOW_POWER') {
         this.mode = 'LOW_POWER';
+        this.position = this.position;
         response.results.push({completed: 'false'});
+        
+        } else if (this.mode === 'NORMAL') { 
+        this.position = message.commands[i].value;
+        response.results.push({completed: 'true'});       
 
       } else if (message.commands[i].commandType === 'MODE_CHANGE') {
-          response.results.push({completed: 'true'});
-          this.mode = message.commands[i].value;
+        response.results.push({completed: 'true'});
+        this.mode = message.commands[i].value;
         }
             
       } else if (message.commands[i].commandType === 'STATUS_CHECK') {
@@ -45,3 +46,6 @@ class Rover {
 
 
 module.exports = Rover;
+
+
+// console.log(message.length.value);
