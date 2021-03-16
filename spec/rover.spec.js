@@ -48,6 +48,8 @@ describe("Rover class", function() {
     expect(rover.mode).toEqual('NORMAL');
     expect(rover.generatorWatts).toEqual(110);
     expect(rover.position).toEqual(4582);
+    // expect(response.results[4].roverStatus.mode).toEqual('LOW_POWER');
+    // expect(results[0].roverStatus).toEqual({mode: 'NORMAL', generatorWatts: 110, position: 98382});
   });
 
   // Test 11
@@ -73,11 +75,13 @@ describe("Rover class", function() {
 
   // // Test 13
   it("responds with position for move command", function() {
-    let commands = [new Command('MOVE', 4321)];
+    let commands = [new Command('MOVE', 3579), new Command('MOVE', 4321)];
     let message = new Message('Responds with position for move command', commands);
-    let rover = new Rover(4321)
+    let rover = new Rover(message.commands.value);
     let response = rover.receiveMessage(message);
     expect(rover.position).toEqual(4321)
+    // expect(response.results[4].roverStatus.position).toEqual(4321);
+    
   });
 
 });
