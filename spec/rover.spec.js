@@ -69,8 +69,8 @@ describe("Rover class", function() {
     let message = new Message('Responds with false when attempting to move in LOW_POWER mode', commands);
     let rover = new Rover(120);
     let response = rover.receiveMessage(message);
-    expect(response.results.value).toBeFalse;
-    // expect(rover.position).toEqual(this.position);
+    expect(response.results[2].value).toBeFalse;
+    expect(rover.position).toEqual(rover.position);
   });
 
   // // Test 13
@@ -80,7 +80,6 @@ describe("Rover class", function() {
     let rover = new Rover(message.commands.value);
     let response = rover.receiveMessage(message);
     expect(rover.position).toEqual(4321)
-    // expect(response.results[4].roverStatus.position).toEqual(4321);
     
   });
 
